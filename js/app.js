@@ -16,15 +16,22 @@ osmTiles.addTo(stationMap);
 // Set satellite icon
 const satellite = L.icon({
 	iconUrl: './resources/satellite.svg',
-	iconSize: [ 60, 42 ],
-	iconAnchor: [ 22, 94 ]
+	iconSize: [ 60, 42 ]
 });
+
+// Marker variable
+const marker = L.marker([ 0, 0 ], { icon: satellite }).addTo(stationMap);
 
 // Request ISS location data
 const getLocation = async () => {
 	const response = await fetch(stationApi);
 	const data = await response.json();
-	console.log(data);
+
+	// Grab lat and lon from station data
+	const { latitude, longitude } = data;
+
+	// Plot marker at location
+	marker.setLatLng([ latitude, longitude ]);
 };
 
 getLocation();
