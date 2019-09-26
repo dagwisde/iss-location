@@ -19,8 +19,14 @@ const satellite = L.icon({
 	iconSize: [ 60, 42 ]
 });
 
-// Marker variable
+// Marker & circle variables
 const marker = L.marker([ 0, 0 ], { icon: satellite }).addTo(stationMap);
+const circle = L.circleMarker([ 0, 0 ], {
+	color: 'red',
+	fillColor: '#f03',
+	fillOpacity: 0.5,
+	radius: 35
+}).addTo(stationMap);
 
 // Request ISS location data
 const getLocation = async () => {
@@ -32,9 +38,12 @@ const getLocation = async () => {
 
 	// Plot marker at location
 	marker.setLatLng([ latitude, longitude ]);
+	circle.setLatLng([ latitude, longitude ]);
 
 	// Center on marker
 	stationMap.setView([ latitude, longitude ], 2);
 };
 
-getLocation();
+// getLocation();
+
+// setInterval(getLocation, 1000);
