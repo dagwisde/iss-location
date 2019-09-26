@@ -19,3 +19,12 @@ const satellite = L.icon({
 	iconSize: [ 60, 42 ],
 	iconAnchor: [ 22, 94 ]
 });
+
+// Request ISS location data
+const getLocation = async () => {
+	const response = await fetch(stationApi);
+	const data = await response.json();
+	console.log(data);
+};
+
+getLocation();
