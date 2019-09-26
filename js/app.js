@@ -28,6 +28,8 @@ const circle = L.circleMarker([ 0, 0 ], {
 	radius: 35
 }).addTo(stationMap);
 
+let firstCall = true;
+
 // Request ISS location data
 const getLocation = async () => {
 	const response = await fetch(stationApi);
@@ -41,9 +43,12 @@ const getLocation = async () => {
 	circle.setLatLng([ latitude, longitude ]);
 
 	// Center on marker
-	stationMap.setView([ latitude, longitude ], 2);
+	if (firstCall) {
+		stationMap.setView([ latitude, longitude ], 2);
+		firstCall = false;
+	}
 };
 
-// getLocation();
+getLocation();
 
-// setInterval(getLocation, 1000);
+setInterval(getLocation, 1000);
