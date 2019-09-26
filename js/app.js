@@ -12,3 +12,10 @@ const osmTiles = L.tileLayer(osmUrl, { attribution });
 
 // Set tile layer
 osmTiles.addTo(stationMap);
+
+// Set satellite icon
+const satellite = L.icon({
+	iconUrl: './resources/satellite.svg',
+	iconSize: [ 60, 42 ],
+	iconAnchor: [ 22, 94 ]
+});
