@@ -32,6 +32,9 @@ const getLocation = async () => {
 
 	// Plot marker at location
 	marker.setLatLng([ latitude, longitude ]);
+
+	// Center on marker
+	stationMap.setView([ latitude, longitude ], 2);
 };
 
 getLocation();
